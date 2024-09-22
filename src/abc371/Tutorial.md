@@ -1,8 +1,8 @@
 # ABC371
 
-[官方题解]: https://atcoder.jp/contests/abc371/editorial
-[文字题解]: https://www.cnblogs.com/Lanly/p/18414807
-[视频题解]: https://www.bilibili.com/video/BV1dF4UeHEHM/
+[官方题解](https://atcoder.jp/contests/abc371/editorial)
+[文字题解](https://www.cnblogs.com/Lanly/p/18414807)
+[视频题解](https://www.bilibili.com/video/BV1dF4UeHEHM/)
 
 | 题目 | Hint                                                         |
 | :--- | :----------------------------------------------------------- |
