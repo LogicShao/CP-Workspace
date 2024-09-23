@@ -8,7 +8,7 @@ using LL = long long;
 struct node
 {
     int l, r;
-    LL val, add;
+    LL sum, add;
 };
 
 struct segmentTree
@@ -24,15 +24,15 @@ struct segmentTree
 
     void pushup(int u)
     {
-        p.val = pl.val + pr.val;
+        p.sum = pl.sum + pr.sum;
     }
 
     void pushdown(int u)
     {
         if (p.add)
         {
-            pl.val += p.add * (pl.r - pl.l + 1);
-            pr.val += p.add * (pr.r - pr.l + 1);
+            pl.sum += p.add * (pl.r - pl.l + 1);
+            pr.sum += p.add * (pr.r - pr.l + 1);
             pl.add += p.add;
             pr.add += p.add;
             p.add = 0;
@@ -44,7 +44,7 @@ struct segmentTree
         p.l = l, p.r = r;
         if (l == r)
         {
-            p.val = a[l];
+            p.sum = a[l];
             return;
         }
         int mid = (l + r) >> 1;
@@ -53,27 +53,27 @@ struct segmentTree
         pushup(u);
     }
 
-    void modify(int u, int l, int r, LL d)
+    void add(int u, int l, int r, LL d)
     {
         if (p.l >= l && p.r <= r)
         {
-            p.val += d * (p.r - p.l + 1);
+            p.sum += d * (p.r - p.l + 1);
             p.add += d;
             return;
         }
         pushdown(u);
         int mid = (p.l + p.r) >> 1;
         if (l <= mid)
-            modify(ls(u), l, r, d);
+            add(ls(u), l, r, d);
         if (r > mid)
-            modify(rs(u), l, r, d);
+            add(rs(u), l, r, d);
         pushup(u);
     }
 
     LL query(int u, int l, int r)
     {
         if (p.l >= l && p.r <= r)
-            return p.val;
+            return p.sum;
         pushdown(u);
         int mid = (p.l + p.r) >> 1;
         LL res = 0;
@@ -112,11 +112,11 @@ int main()
         {
             int l, r, k, d;
             cin >> l >> r >> k >> d;
-            tree.modify(1, l, l, k);
+            tree.add(1, l, l, k);
             if (l + 1 <= r)
-                tree.modify(1, l + 1, r, d);
+                tree.add(1, l + 1, r, d);
             if (r + 1 <= n)
-                tree.modify(1, r + 1, r + 1, -k - (r - l) * d);
+                tree.add(1, r + 1, r + 1, -k - (r - l) * d);
         }
         if (opt == 2){
             int q;
