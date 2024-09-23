@@ -38,7 +38,7 @@ struct segmentTree
             pl.sum = (2ll * pl.st + pl.len() - 1) * pl.len() / 2;
             pr.st = p.st + pl.len();
             pr.sum = (2ll * pr.st + pr.len() - 1) * pr.len() / 2;
-            p.st=0;
+            p.st = 0;
         }
     }
 
@@ -81,12 +81,14 @@ struct segmentTree
             return;
         }
         pushdown(u);
-        int mid=(p.l+p.r)>>1;
-        if(l<=mid){
-            modify(ls(u),l,r,d);
+        int mid = (p.l + p.r) >> 1;
+        if (l <= mid)
+        {
+            modify(ls(u), l, r, d);
         }
-        if(r>mid){
-            modify(rs(u),l,r,d);
+        if (r > mid)
+        {
+            modify(rs(u), l, r, d);
         }
         pushup(u);
     }
@@ -111,56 +113,68 @@ struct segmentTree
 #undef pl
 #undef pr
 };
-int main(){
+int main()
+{
     int n;
-    cin>>n;
-    vector<LL> x(n+1);
-    for(int i=1;i<=n;i++){
-        cin>>x[i];
+    cin >> n;
+    vector<LL> x(n + 1);
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> x[i];
     }
     segmentTree tree(n);
-    tree.build(1,1,n,x);
+    tree.build(1, 1, n, x);
     int m;
-    cin>>m;
-    ll ans=0;
-    while(m--){
-        int t,g;
-        cin>>t>>g;
-        if(tree.query(1,t,t)<g)//t的位置在g的左边
+    cin >> m;
+    ll ans = 0;
+    while (m--)
+    {
+        int t, g;
+        cin >> t >> g;
+        if (tree.query(1, t, t) >= g) // t的位置在g的右边
         {
-            int lb=t,ub=t;//二分需要移动的人
-            while(lb<ub){
-                int mid=(lb+ub)>>1;
-                int len = mid-t+1;
-                int L=g,R=g+len-1;//移动后区间的左右端点
-                if(tree.query(1,mid,mid)<=R){
-                    lb=mid+1;
-                }else{
-                    ub=mid;
+            int lb = t, ub = t; // 二分需要移动的人
+            while (lb < ub)
+            {
+                int mid = (lb + ub + 1) >> 1;
+                int len = mid - t + 1;
+                int L = g, R = g + len - 1; // 移动后区间的左右端点
+                if (tree.query(1, mid, mid) >= L)
+                {
+                    ub = mid;
+                }
+                else
+                {
+                    lb = mid + 1;
                 }
             }
-            int len = lb-t;
-            ll cost =tree.query(1,lb,t)-((ll)g*2+(ll)len-1)*len/2-tree.query(1,t,lb);
-            ans+=cost;
-            tree.modify(1,t,lb,g);
-
-        }else{//t的位置在g的右边
-            int lb=t,ub=n;
-            while(lb<ub){
-                int mid=(lb+ub)>>1;
-                int len=mid-t+1;
-                int L=g-len+1,R=g;
-                if(tree.query(1,mid,mid)>=L){
-                    ub=mid;
-                }else{
-                    lb=mid+1;
+            int len = lb - t;
+            ll cost = tree.query(1, t, lb) - ((ll)g * 2 + len - 1) * len / 2;
+            ans += cost;
+            tree.modify(1, t, lb, g);
+        }
+        else
+        { // t的位置在g的左边
+            int lb = t, ub = n;
+            while (lb < ub)
+            {
+                int mid = (lb + ub + 1) >> 1;
+                int len = mid - t + 1;
+                int L = g - len + 1, R = g;
+                if (tree.query(1, mid, mid) <= R)
+                {
+                    lb = mid;
+                }
+                else
+                {
+                    ub = mid - 1;
                 }
             }
-            int len=ub-t;
-            ll cost=tree.query(1,t,ub)-((ll)g*2-(ll)len+1)*len/2;
-            ans+=cost;
-            tree.modify(1,t,ub,g-len+1);
+            int len = ub - t + 1;
+            ll cost = ((ll)g * 2 + len  - 1) * len / 2 - tree.query(1, t, ub);
+            ans += cost;
+            tree.modify(1, t, ub, g - len + 1);
         }
     }
-    cout<<ans<<endl;
+    cout << ans << endl;
 }
