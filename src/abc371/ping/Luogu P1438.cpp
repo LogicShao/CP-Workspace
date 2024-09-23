@@ -7,7 +7,7 @@ struct node
 {
     int l, r;
     LL sum;
-    LL tag;
+    LL tag; // 表示未向下处理的加项
 
     int len() { return r - l + 1; }
 };
