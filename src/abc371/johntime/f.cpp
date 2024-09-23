@@ -133,12 +133,12 @@ int main()
         cin >> t >> g;
         if (tree.query(1, t, t) >= g) // t的位置在g的右边
         {
-            int lb = t, ub = t; // 二分需要移动的人
+            int lb = 1, ub = t;
             while (lb < ub)
             {
-                int mid = (lb + ub + 1) >> 1;
-                int len = mid - t + 1;
-                int L = g, R = g + len - 1; // 移动后区间的左右端点
+                int mid = (lb + ub) >> 1;
+                int len = t - mid + 1;
+                int L = g - len + 1, R = g;
                 if (tree.query(1, mid, mid) >= L)
                 {
                     ub = mid;
@@ -148,10 +148,10 @@ int main()
                     lb = mid + 1;
                 }
             }
-            int len = lb - t;
-            ll cost = tree.query(1, t, lb) - ((ll)g * 2 + len - 1) * len / 2;
+            int len = t - lb + 1;
+            ll cost = tree.query(1, lb, t) - ((ll)g * 2 - len + 1) * len / 2;
             ans += cost;
-            tree.modify(1, t, lb, g);
+            tree.modify(1, lb, t, g - len + 1);
         }
         else
         { // t的位置在g的左边
@@ -173,7 +173,7 @@ int main()
             int len = ub - t + 1;
             ll cost = ((ll)g * 2 + len  - 1) * len / 2 - tree.query(1, t, ub);
             ans += cost;
-            tree.modify(1, t, ub, g - len + 1);
+            tree.modify(1, t, ub, g);
         }
     }
     cout << ans << endl;
