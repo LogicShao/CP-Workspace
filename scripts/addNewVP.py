@@ -2,14 +2,17 @@ import os
 
 contestName = input("Enter the contest name: ")
 
-srcdir = "src/" + contestName
+contestDir = "src/" + contestName
 usrNameList = ['fanta5y', 'ping', 'johntime']
 
 # Create the directory
-os.mkdir(srcdir)
+if not os.path.exists(contestDir):
+    os.mkdir(contestDir)
 
 # Create the files
 for usrName in usrNameList:
-    os.system(f"touch {srcdir}/{usrName}/.gitkeep")
+    if not os.path.exists(f"{contestDir}/{usrName}"):
+        os.makedirs(f"{contestDir}/{usrName}")
+    os.system(f"touch {contestDir}/{usrName}/.gitkeep")
 
-os.system(f"touch {srcdir}/Tutorial.md")
+os.system(f"touch {contestDir}/Tutorial.md")
