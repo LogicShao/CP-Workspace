@@ -11,3 +11,5 @@ os.mkdir(srcdir)
 # Create the files
 for usrName in usrNameList:
     os.system(f"touch {srcdir}/{usrName}/.gitkeep")
+
+os.system(f"touch {srcdir}/Tutorial.md")
