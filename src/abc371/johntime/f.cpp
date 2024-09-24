@@ -137,9 +137,9 @@ int main()
             while (lb < ub)
             {
                 int mid = (lb + ub) >> 1;
-                int len = t - mid + 1;
-                int L = g - len + 1, R = g;
-                if (tree.query(1, mid, mid) >= L)
+                int len = t - mid + 1;//动态分析当前的长度
+                int L = g - len + 1, R = g;//确定目标的区间
+                if (tree.query(1, mid, mid) >= L)//如果当前查询的值在目标区间的右边
                 {
                     ub = mid;
                 }
@@ -149,9 +149,9 @@ int main()
                 }
             }
             int len = t - lb + 1;
-            ll cost = tree.query(1, lb, t) - ((ll)g * 2 - len + 1) * len / 2;
+            ll cost = tree.query(1, lb, t) - ((ll)g * 2 - len + 1) * len / 2;//当前的代价等于移动前的位置减去移动后的位置所形成的等差数列
             ans += cost;
-            tree.modify(1, lb, t, g - len + 1);
+            tree.modify(1, lb, t, g - len + 1);//区间赋值为等差数列
         }
         else
         { // t的位置在g的左边
