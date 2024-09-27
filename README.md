@@ -6,5 +6,6 @@
 | 2    | 线段树处理等差数列 | https://vjudge.net/article/5854                              | OK    |
 | 3    | abc370             | https://atcoder.jp/contests/abc370                           | OK    |
 | 4    | ICPC-2022-NanJing  | https://codeforces.com/gym/104128<br />看错误样例可以上 [QOJ](https://qoj.ac/contest/1093) | NOW   |
-| 5    | 2024-网络赛-补题   | https://vjudge.net/article/5779                              | TO DO |
+| 5    | UCUP-WestLake      | https://contest.ucup.ac/contests                             | TO DO |
+| 6    | 2024-网络赛-补题   | https://vjudge.net/article/5779                              | TO DO |
 

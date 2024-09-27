@@ -15,4 +15,4 @@ for usrName in usrNameList:
         os.makedirs(f"{contestDir}/{usrName}")
     os.system(f"touch {contestDir}/{usrName}/.gitkeep")
 
-os.system(f"touch {contestDir}/Tutorial.md")
+os.system(f"touch {contestDir}/README.md")
