@@ -31,7 +31,7 @@ bool check(ll x)
         ll y;
         if (d == 0)
             y = 0;
-        if (x - a[i] - c < 0)
+        if (x - a[i] - c <= 0)//0%d也会出现错误
             y = 0;
         else
         {
@@ -62,18 +62,13 @@ int main()
         cin >> a[i];
         maxa = max(maxa, a[i]);
     }
-    ll l = -1, r = maxa + 1;
-    while (r - l > 1)
-    {
-        ll mid = (l + r) / 2;
-        if (check(mid))
-        {
-            l = mid;
-        }
-        else
-        {
-            r = mid;
-        }
-    }
+    ll l = 0, r = 1e16;
+  while (l < r) {
+    ll mid = (l + r + 1) >> 1;
+    if (check(mid))
+      l = mid;
+    else
+      r = mid - 1;
+  }
     cout << l << endl;
 }
