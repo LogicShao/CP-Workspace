@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+constexpr int D = 100;
 void add(vector<vector<int>> &f,int x1,int y1,int x2,int y2){
     f[x1][y1]++;
     f[x2+1][y1]--;
@@ -11,7 +12,7 @@ void work(){
     cin>>n>>m>>k;
     string s;
     cin>>s;
-    int u=1,d=m,l=1,r=n;
+    int u=1,d=n,l=1,r=m;
     int nowx=0,nowy=0;
     for(auto &c:s){
         if(c=='U'){
@@ -27,9 +28,9 @@ void work(){
             nowx--;
         }
         u=max(u,nowy+1);
-        d=min(d,nowy+m);
+        d=min(d,nowy+n);
         l=max(l,nowx+1);
-        r=min(r,nowx+n);
+        r=min(r,nowx+m);
     }
     if(u>d||l>r){
         if(k==0){
@@ -45,11 +46,46 @@ void work(){
         return;
     }
     int rest = (d-u+1)*(r-l+1)-k;
-    vector<vector<int>> f(n+1,vector<int>(m+1,0));
-    
-
+    vector<vector<int>> f(D*2+n,vector<int>(D*2+m,0));
+    vector<vector<int>> vis(D*2+n,vector<int>(D*2+m,0));
+    add(f,u+D,l+D,d+D,r+D);
+    vis[u+D][l+D]=1;
+    for(auto &c:s){
+        if(c=='U'){
+            u--,d--;
+        }
+        if(c=='D'){
+            u++,d++;
+        }
+        if(c=='L'){
+            l--,r--;
+        }
+        if(c=='R'){
+            l++,r++;
+        }
+        if(!vis[u+D][l+D]){
+            add(f,u+D,l+D,d+D,r+D);
+        }
+        vis[u+D][l+D]=1;
+    }
+    for(int i=D+1;i<=D+n;i++){
+        for(int j=D+1;j<=D+m;j++){
+            f[i][j]+=f[i-1][j]+f[i][j-1]-f[i-1][j-1];
+        }
+    }
+    int ans = 0;
+    for(int i=1;i<=n;i++){
+        for(int j=1;j<=m;j++){
+            if(f[i+D][j+D]==rest){
+                ans++;
+            }
+        }
+    }
+    cout<<ans<<'\n';
 }
 int main(){
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     int t;
     cin>>t;
     while(t--){
