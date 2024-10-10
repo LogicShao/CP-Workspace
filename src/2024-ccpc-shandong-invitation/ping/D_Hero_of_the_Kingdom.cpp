@@ -1,5 +1,3 @@
-// Wrong Answer （；´д｀）ゞ
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -7,28 +5,15 @@ using namespace std;
 
 void solve()
 {
-    LL p, a, b;
-    cin >> p >> a >> b;
-    LL q, c, d;
-    cin >> q >> c >> d;
+    LL p, q, a, b, c, d;
     LL m, t;
+
+    cin >> p >> a >> b;
+    cin >> q >> c >> d;
     cin >> m >> t;
 
-    // LL tot = 0;
     while (t > 0)
     {
-        // tot++;
-
-        // if ( t < a + c + b + d || m < p )
-        //     break;
-        // t -= b + d;
-        // LL x = min( m / p, t / (a + c));
-        // if ( x <= 0 )
-        //     break;
-        
-        // t -= x * (a + c);
-        // m += (q - p) * x; 
-
         if ( t < a + c + b + d || m < p )
             break;
         
@@ -36,24 +21,22 @@ void solve()
         if ( x * ( a + c ) + b + d >= t)
         {
             x = (t - b - d) / (a + c);
-            t -= x * (a + c);
+            t -= x * (a + c) + b + d;
             m += x * (q - p);
             continue;
         }
         
-        LL nex = (p - (m - x * p)) / (q - p);
-        if ( (p - (m % p)) % (q - p) != 0 )
+        LL nex = (p - (m - x * p)) / ((q - p) * x); // <- 看了一个小时才发现这里的 q-p 没加上乘x （；´д｀）ゞ
+        if ( nex * ((q - p) * x) + m < x * p + p )
             nex++;
 
-        nex = min( t / (x * (a + c) + b + d), nex);
+        if ( nex * (x * (a + c) + b + d) > t )
+            nex = t / (x * (a + c) + b + d);
         
-        // cout << t << " " << m << " " << nex << " ";
         t -= nex * (x * (a + c) + b + d);
         m += nex * ((q - p) * x); 
-        // cout << t << " " << m << "\n";
     }
-    // cout << m << " " << tot << endl;
-    cout << m << endl;
+    cout << m << '\n';
 }
 
 int main()
