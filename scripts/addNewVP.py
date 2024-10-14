@@ -15,6 +15,6 @@ for usrName in usrNameList:
     usrFilePath = contestDir + "/" + usrName
     if not os.path.exists(usrFilePath):
         os.mkdir(usrFilePath)
-    os.system(f"touch {usrFilePath}/.gitkeep")
+    open(f"{usrFilePath}/.gitkeep", 'a').close()
 
-os.system(f"touch {contestDir}/README.md")
+open(f"{contestDir}/README.md", 'a').close()

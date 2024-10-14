@@ -11,4 +11,5 @@
 | 7    | abc372                        | <https://atcoder.jp/contests/abc372>                         | OK    |
 | 8    | abc373                        | <https://atcoder.jp/contests/abc373>                         | OK    |
 | 9    | CCPC-2024-shandong-invitation | <https://codeforces.com/gym/105385>                          | OK    |
-| 10   | CF-973-Div2                   | <https://codeforces.com/contest/2013>                        | TO DO |
+| 10   | CF-973-Div2                   | <https://codeforces.com/contest/2013>                        | OK    |
+| 11   | CF-978-Div2                   | https://codeforces.com/contest/2022                          | TO DO |
