@@ -6,52 +6,34 @@ int n;
 
 bool check(int x, vector<LL> &a)
 {
-    priority_queue<LL> even,need;
-    LL res = 0;
-    for (auto v : a)
-    {
-        if (v < x)
-        {
-            need.push(v);
+    LL tot = 0;
+    priority_queue<LL> q;
+    for(auto v:a){
+        while(v%2==0){
+            v/=2;
+            tot++;
         }
-        else
-        {
-            res++;
-            if (v % 2 == 0)
-            {
-                even.push(v);
+        q.push(v);
+    }
+    LL ans=0;
+    while(!q.empty()){
+        auto v=q.top();
+        q.pop();
+        if(v>x){
+            ans++;
+        }else{
+            while(v<x&&tot){
+                v*=2;
+                tot--;
+            }
+            if(v>=x){
+                ans++;
             }
         }
+        if(ans>=x)return true;
     }
-    if (res >= x)
-        return true;
+    return false;
 
-    while (!even.empty() && !need.empty())
-    {
-        auto h = even.top(), ne = need.top();
-        even.pop();
-        need.pop();
-        if (h / 2 >= x)
-        {   
-            if(ne*2 < x)
-            {
-                need.push(ne*2);
-            }
-            else
-            {
-                res++;
-            }
-            if (h / 4 >= x)
-            {
-                if((h/2)%2==0)even.push(h / 2);
-            }
-        }
-        else
-        {
-            break;
-        }
-    }
-    return res >= x;
 }
 
 void solve()
