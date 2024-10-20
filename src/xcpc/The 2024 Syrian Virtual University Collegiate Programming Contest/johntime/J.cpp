@@ -10,18 +10,18 @@ void work(){
     int ans=0;
     for(auto x:a){
         int res=0;
-        for(int i=0;i<cnt&&prime[i]<=x/prime[i];i++){
+        for(int i=0;i<cnt&&prime[i]<=x/prime[i];i++){//分解x的所有质因数
             if(x%prime[i]==0){
-                while(x%prime[i]==0){
+                while(x%prime[i]==0){//循环分解x的质数因子，保证后面x不再有这个质数因子
                     x/=prime[i];
                     ++res;
                 }
             }
         }
-        if(x>1) ++res;
-        if(res>=3) ++ans;
+        if(x>1) ++res;//从2到根号x都没有整除x的数，那么x就是一个质数
+        if(res>=3) ++ans;//如果res大于等于3，那么两者一个是质数，一个是合数，是争夺的对象
     }
-    cout<<n-ans/2<<endl;
+    cout<<n-ans/2<<endl;//后手需要下取整
 }
 
 void get_primes(int n) {
