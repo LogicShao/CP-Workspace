@@ -14,3 +14,4 @@
 | 10   | CF-973-Div2                                                  | <https://codeforces.com/contest/2013>                        | OK   |
 | 11   | CF-978-Div2                                                  | https://codeforces.com/contest/2022                          | OK   |
 | 12   | The 2024 Syrian Virtual University Collegiate Programming Contest | https://codeforces.com/gym/105264                            | OK   |
+| 13   | 2023icpcshenyang                                             | https://codeforces.com/gym/104869                            | NOW  |
