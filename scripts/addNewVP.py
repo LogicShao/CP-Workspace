@@ -17,4 +17,4 @@ for usrName in usrNameList:
         os.mkdir(usrFilePath)
     open(f"{usrFilePath}/.gitkeep", 'a').close()
 
-open(f"{contestDir}/README.md", 'a').close()
+# open(f"{contestDir}/README.md", 'a').close()

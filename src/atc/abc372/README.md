@@ -1,6 +1,6 @@
 # ABC372
 
-官方题解：https://atcoder.jp/contests/abc372/tasks/abc372_f/editorial
+官方题解：<https://atcoder.jp/contests/abc372/tasks/abc372_f/editorial>
 
 ## A
 
