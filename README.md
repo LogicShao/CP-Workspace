@@ -16,4 +16,5 @@
 | 12   | 2024SyrianVirtualUniversityCollegiate | <https://codeforces.com/gym/105264>                          | OK   |
 | 13   | 2023icpcshenyang                      | <https://codeforces.com/gym/104869>                          | OK   |
 | 14   | 2024-CCPC-Harbin                      | <https://contest.ucup.ac/contest/1817>                       | OK   |
-| 15   | 2023icpcjinan                         | <https://codeforces.com/gym/104901>                          | TODO |
+| 15   | 2023icpcjinan                         | <https://codeforces.com/gym/104901>                          | PASS |
+| 16   | Codeforces Global Round 27            | https://codeforces.com/contest/2035                          | TODO |
