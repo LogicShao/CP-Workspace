@@ -1,10 +1,23 @@
 #include <bits/stdc++.h>
 
 #define multi_test 1
-#define DEBUG 1
+#define DEBUG 0
 
 using LL = long long;
 using PII = std::pair<int, int>;
+
+constexpr int mod = 1e9 + 7;
+
+LL fpow(LL a, LL b, LL mod) {
+  LL res = 1;
+  for (; b; b >>= 1) {
+    if (b & 1) {
+      res = res * a % mod;
+    }
+    a = a * a % mod;
+  }
+  return res;
+}
 
 void solve() {
   int n;
